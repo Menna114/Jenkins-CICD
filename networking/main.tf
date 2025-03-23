@@ -4,6 +4,10 @@ variable "cidr_public_subnet" {}
 variable "eu_availability_zone" {}
 variable "cidr_private_subnet" {}
 
+output "dev_proj_1_vpc_id" {
+  value = aws_vpc.dev_proj_1_vpc.id
+}
+
 #VPC
 resource "aws_vpc" "dev_proj_1_vpc" {
   cidr_block = var.vpc_cidr #ip range for my vpc
