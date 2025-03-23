@@ -59,5 +59,17 @@ resource "aws_route_table" "dev_proj_1_private_subnets" {
     Name = "dev-proj-1-private-rt"
   }
 }
+# Public Route Table and Public Subnet Association
+resource "aws_route_table_association" "dev_proj_1_public_rt_subnet_association" {
+  count          = length(aws_subnet.dev_proj_1_public_subnets)
+  subnet_id      = aws_subnet.dev_proj_1_public_subnets[count.index].id
+  route_table_id = aws_route_table.dev_proj_1_public_route_table.id
+}
 
+# Private Route Table and private Subnet Association
+resource "aws_route_table_association" "dev_proj_1_private_rt_subnet_association" {
+  count          = length(aws_subnet.dev_proj_1_private_subnets)
+  subnet_id      = aws_subnet.dev_proj_1_private_subnets[count.index].id
+  route_table_id = aws_route_table.dev_proj_1_private_subnets.id
+}
 
