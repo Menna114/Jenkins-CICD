@@ -12,7 +12,7 @@ resource "aws_vpc" "dev_proj_1_vpc" {
   }
 }
 
-# public subnet
+# Public Subnet
 resource "aws_subnet" "dev_proj_1_public_subnets" {
   count             = length(var.cidr_public_subnet)
   vpc_id            = aws_vpc.dev_proj_1_vpc.id
@@ -23,7 +23,7 @@ resource "aws_subnet" "dev_proj_1_public_subnets" {
     Name = "dev-proj-public-subnet-${count.index + 1}"
   }
 }
-# private subnet
+# Private Subnet
 resource "aws_subnet" "dev_proj_1_private_subnets" {
   count             = length(var.cidr_private_subnet)
   vpc_id            = aws_vpc.dev_proj_1_vpc.id
@@ -41,4 +41,23 @@ resource "aws_internet_gateway" "dev_proj_1_public_internet_gateway" {
     Name = "dev-proj-1-igw"
   }
 }
+# Public Route Table
+resource "aws_route_table" "dev_proj_1_public_route_table" {
+  vpc_id = aws_vpc.dev_proj_1_vpc.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.dev_proj_1_public_internet_gateway.id
+  }
+  tags = {
+    Name = "dev-proj-1-public-rt"
+  }
+}
+# Private Route Table
+resource "aws_route_table" "dev_proj_1_private_subnets" {
+  vpc_id = aws_vpc.dev_proj_1_vpc.id
+  tags = {
+    Name = "dev-proj-1-private-rt"
+  }
+}
+
 
