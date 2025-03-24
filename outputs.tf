@@ -21,3 +21,11 @@ output "jenkins_ec2_instance_ip" {
 output "dev_proj_1_lb_target_group_arn" {
   value = module.lb-target-group.dev_proj_1_lb_target_group_arn
 }
+
+output "aws_lb_dns_name" {
+  value = module.alb.aws_lb_dns_name
+}
+
+output "aws_lb_zone_id" {
+  value = module.alb.aws_lb_zone_id
+}
