@@ -10,8 +10,10 @@ output "sg_ec2_jenkins_port_8080" {
   value = module.security_group.sg_ec2_jenkins_port_8080
 }
 
-
 output "dev_proj_1_public_subnets" {
   value = module.networking.dev_proj_1_public_subnets
 }
 
+output "jenkins_ec2_instance_ip" {
+  value = module.ec2-jenkins.jenkins_ec2_instance_ip
+}
