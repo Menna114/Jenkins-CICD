@@ -17,3 +17,7 @@ output "dev_proj_1_public_subnets" {
 output "jenkins_ec2_instance_ip" {
   value = module.ec2-jenkins.jenkins_ec2_instance_ip
 }
+
+output "dev_proj_1_lb_target_group_arn" {
+  value = module.lb-target-group.dev_proj_1_lb_target_group_arn
+}
